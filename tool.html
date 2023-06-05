@@ -29,8 +29,6 @@
       var reader = new FileReader();
       reader.onload = function(e) {
         var imageDataURI = e.target.result;
-        var gdjs = gdjs || {};
-        gdjs.gdevelopLogo = imageDataURI;
         var scriptContent = 'var gdjs;(function(z){z.gdevelopLogo="' + imageDataURI + '"})(gdjs||(gdjs={}));';
         var blob = new Blob([scriptContent], { type: 'text/javascript' });
         var url = URL.createObjectURL(blob);
