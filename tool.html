@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GDevelop Splash Patcher</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>GDevelopSplashPatcher</h1>
+  <input type="file" id="photo-input" accept="image/*">
+  <button id="encrypt-button">Encrypt Photo</button>
+
+  <script src="gd-logo-dark-colored.js"></script>
+  <script>
+    document.getElementById('encrypt-button').addEventListener('click', function() {
+      var fileInput = document.getElementById('photo-input');
+      var file = fileInput.files[0];
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        var imageDataURI = e.target.result;
+        var gdjs = gdjs || {};
+        gdjs.gdevelopLogo = imageDataURI;
+        var scriptContent = 'var gdjs;(function(z){z.gdevelopLogo="' + imageDataURI + '"})(gdjs||(gdjs={}));';
+        var blob = new Blob([scriptContent], { type: 'text/javascript' });
+        var url = URL.createObjectURL(blob);
+        var downloadLink = document.createElement('a');
+        downloadLink.href = url;
+        downloadLink.download = 'gd-logo-dark-colored.js';
+        downloadLink.click();
+        URL.revokeObjectURL(url);
+      };
+      reader.readAsDataURL(file);
+    });
+  </script>
+</body>
+</html>
