@@ -3,7 +3,7 @@
 <head>
   <title>GDevelop Splash Patcher</title>
   <style>
-    .center {
+    body {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -18,8 +18,8 @@
 </head>
 <body>
   <h1>GDevelopSplashPatcher</h1>
-  <input type="file" id="photo-input" accept="image/*" class="center">
-  <button id="encrypt-button" class="center">Encrypt Photo</button>
+  <input type="file" id="photo-input" accept="image/*">
+  <button id="encrypt-button">Encrypt Photo</button>
   <script>
     document.getElementById('encrypt-button').addEventListener('click', function() {
       var fileInput = document.getElementById('photo-input');
